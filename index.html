@@ -11,10 +11,7 @@
   <link rel="icon" href="data:,">
   <!-- Tailwind CSS (CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* small utility for max width */
-    .container { max-width: 1100px; }
-  </style>
+  <style>.container{max-width:1100px}</style>
 </head>
 <body class="bg-white text-slate-900">
   <!-- Header -->
@@ -22,6 +19,7 @@
     <div class="container mx-auto px-4 py-4 flex items-center justify-between">
       <a href="#top" class="font-bold text-xl">Student Speed Dating</a>
       <nav class="flex gap-5 text-sm">
+        <a href="#mission" class="hover:underline">Mission</a>
         <a href="#how" class="hover:underline">How it works</a>
         <a href="#rules" class="hover:underline">Rules</a>
         <a href="#chapters" class="hover:underline">Chapters</a>
@@ -43,8 +41,40 @@
     </div>
   </section>
 
+  <!-- Mission & Philosophy -->
+  <section id="mission" class="bg-slate-50">
+    <div class="container mx-auto px-4 py-12 md:py-16">
+      <h2 class="text-2xl md:text-3xl font-semibold">Our Mission & Philosophy</h2>
+      <p class="mt-4 text-slate-800">
+        We’re here to make dating less casual and more meaningful. Most apps feel noisy and transactional—
+        too many selfish, dishonest interactions that leave people frustrated. Not everyone is comfortable
+        approaching strangers in bars or loud venues, and you shouldn’t have to be. Our online setting is
+        comfortable, convenient, and respectful by design.
+      </p>
+      <div class="mt-6 grid md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-lg font-semibold">What we believe</h3>
+          <ul class="mt-3 list-disc pl-6 space-y-2">
+            <li>Genuine connection starts with real, face-to-face conversation—no endless swiping.</li>
+            <li>Comfort and safety matter: camera-on, respectful space, clear rules.</li>
+            <li>Privacy first: no match, no details shared. Always mutual consent.</li>
+            <li>Honesty shows up in how you speak, listen, and carry yourself—beyond just words.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold">Hosts as interviewers</h3>
+          <p class="mt-3 text-slate-800">
+            Our hosts keep conversations light and non-personal, like good interviewers. Think of how a
+            great interview reveals more than just answers—tone, presence, and sincerity come through.
+            In short, you can share safely while still letting your real self be seen.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Why + How -->
-  <section id="how" class="bg-slate-50">
+  <section id="how" class="bg-white">
     <div class="container mx-auto px-4 py-12 md:py-16 grid md:grid-cols-2 gap-10">
       <div>
         <h2 class="text-2xl md:text-3xl font-semibold">How it works</h2>
@@ -116,7 +146,7 @@
           </div>
         </article>
 
-        <!-- Duplicate this block for new cities; change name, time, links -->
+        <!-- Duplicate for new cities -->
         <!--
         <article class="rounded-2xl border border-slate-200 p-6 bg-white">
           <h3 class="text-lg font-semibold">City, Country</h3>
@@ -188,9 +218,6 @@
     </div>
   </footer>
 
-  <script>
-    // year
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
 </html>
