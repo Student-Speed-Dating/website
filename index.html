@@ -1,13 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Student Speed Dating — Global Chapters (18–27)</title>
   <meta name="description" content="Weekly virtual student speed dating by city. Consent-first matching, camera-on, verified students and recent grads (18–27).">
-  <meta property="og:title" content="Student Speed Dating — Global Chapters" />
-  <meta property="og:description" content="Join weekly, city-based virtual introductions. Mutual-consent matches only. Apply to host a chapter." />
-  <meta property="og:type" content="website" />
   <meta name="theme-color" content="#ff6b6b">
   <link rel="icon" href="data:,">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -15,10 +12,8 @@
     tailwind.config = {
       theme: {
         extend: {
-          colors: { ink:'#2b2a27', paper:'#faf6ee', cocoa:'#6b4e3d', accent:'#ffb703', berry:'#ff6b6b', sky:'#00b4d8' },
-          boxShadow: { soft:'0 10px 30px rgba(0,0,0,.08)'},
-          animation: { float:'float 6s ease-in-out infinite', pingSlow:'ping 2.2s cubic-bezier(0,0,0.2,1) infinite' },
-          keyframes: { float:{'0%,100%':{transform:'translateY(0)'},'50%':{transform:'translateY(-6px)'}} }
+          colors:{ ink:'#2b2a27', paper:'#faf6ee', accent:'#ffb703', berry:'#ff6b6b', sky:'#00b4d8' },
+          boxShadow:{ soft:'0 10px 30px rgba(0,0,0,.08)' }
         }
       }
     }
@@ -26,141 +21,72 @@
   <style>
     .container{max-width:1100px}
     .grain{background-image:radial-gradient(rgba(0,0,0,.04) 1px, transparent 1px);background-size:6px 6px}
-    a,button{-webkit-tap-highlight-color:rgba(0,0,0,0.05)}
-    .bg-hero{
-      background-image:
-        linear-gradient(to bottom right, rgba(255,107,107,.35), rgba(0,180,216,.35)),
-        url('https://images.unsplash.com/photo-1525182008055-f88b95ff7980?q=80&w=1600&auto=format&fit=crop'); /* people on video call */
-      background-size: cover; background-position: center;
-    }
-    @media (prefers-reduced-motion: reduce){
-      *{animation: none !important; transition: none !important}
-    }
+    .scrollsnap{scroll-snap-type:x mandatory}
+    .snap{scroll-snap-align:center}
+    a,button{-webkit-tap-highlight-color:rgba(0,0,0,.05)}
+    @media (prefers-reduced-motion: reduce){ *{animation:none!important;transition:none!important} }
   </style>
 </head>
 <body class="bg-paper text-ink selection:bg-accent selection:text-ink">
   <!-- Header -->
   <header class="border-b border-ink/10 bg-white/80 backdrop-blur sticky top-0 z-50">
     <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="#top" class="font-extrabold tracking-tight text-lg md:text-xl hover:opacity-90 transition">
-        Student <span class="text-berry">Speed</span> Dating
-      </a>
-
+      <a href="#top" class="font-extrabold tracking-tight text-lg md:text-xl hover:opacity-90">Student <span class="text-berry">Speed</span> Dating</a>
       <nav class="hidden md:flex gap-4 text-sm">
-        <a href="#mission" class="hover:text-berry">Mission</a>
-        <a href="#how" class="hover:text-berry">How it works</a>
         <a href="#topic" class="hover:text-berry">Tonight’s Topic</a>
         <a href="#meetup" class="hover:text-berry">Meetup</a>
+        <a href="#icebreakers" class="hover:text-berry">Icebreakers</a>
         <a href="#gallery" class="hover:text-berry">Show & Tell</a>
+        <a href="#testimonials" class="hover:text-berry">Stories</a>
         <a href="#chapters" class="hover:text-berry">Chapters</a>
-        <a href="#host" class="hover:text-berry">Become a Host</a>
-        <a href="https://www.meetup.com/student-dating" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-ink text-white hover:bg-ink/90">
-          <span>Meetup</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" class="opacity-80" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4zM8 8h3.8v2.2h.05c.53-1 1.82-2.2 3.75-2.2C19.5 8 20 10.6 20 14.1V24h-4v-8.6c0-2-.03-4.6-2.8-4.6c-2.8 0-3.2 2.2-3.2 4.5V24H6V8z"/></svg>
-        </a>
+        <a href="#faq" class="hover:text-berry">FAQ</a>
+        <a href="https://www.meetup.com/student-dating" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-ink text-white hover:bg-ink/90">Meetup ↗</a>
       </nav>
-
       <button id="menuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-ink/15" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
-        <svg id="menuIcon" class="w-5 h-5" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg id="menuIcon" class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
     </div>
     <nav id="mobileNav" class="md:hidden hidden border-t border-ink/10">
       <div class="container mx-auto px-4 py-3 grid gap-3 text-base">
-        <a class="py-2" href="#mission">Mission</a>
-        <a class="py-2" href="#how">How it works</a>
         <a class="py-2" href="#topic">Tonight’s Topic</a>
         <a class="py-2" href="#meetup">Meetup</a>
+        <a class="py-2" href="#icebreakers">Icebreakers</a>
         <a class="py-2" href="#gallery">Show & Tell</a>
+        <a class="py-2" href="#testimonials">Stories</a>
         <a class="py-2" href="#chapters">Chapters</a>
-        <a class="py-2" href="#host">Become a Host</a>
-        <a class="py-2 inline-flex items-center gap-2" href="https://www.meetup.com/student-dating" target="_blank" rel="noreferrer">Meetup ↗</a>
+        <a class="py-2" href="#faq">FAQ</a>
+        <a class="py-2" href="https://www.meetup.com/student-dating" target="_blank" rel="noreferrer">Meetup ↗</a>
       </div>
     </nav>
   </header>
 
-  <!-- HERO with background photo -->
+  <!-- HERO with background video + countdown -->
   <section id="top" class="relative overflow-hidden">
-    <div class="bg-hero">
-      <div class="backdrop-brightness-105">
-        <div class="container mx-auto px-4 py-16 md:py-24 relative">
-          <div class="max-w-3xl text-white drop-shadow-[0_1px_0_rgba(0,0,0,.2)]">
-            <p class="inline-flex items-center gap-2 text-[11px] md:text-xs uppercase tracking-widest bg-white/20 rounded-full px-3 py-1">
-              <span class="w-2 h-2 bg-berry rounded-full animate-pingSlow"></span> Verified students • Ages 18–27 • Camera-on
-            </p>
-            <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mt-4">
-              Real conversations. Real consent. <span class="text-ink bg-accent px-2 rounded">Weekly</span> student speed dating by city.
-            </h1>
-            <p class="mt-3 md:mt-4 text-base md:text-xl">
-              Hosted video chats where you share stories, hobbies, and fun facts. Mutual “yes” → private intro.
-            </p>
-            <div class="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3">
-              <a href="https://www.meetup.com/student-dating" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center rounded-xl px-5 py-3 bg-berry text-white hover:brightness-110 shadow-soft">Join on Meetup</a>
-              <a href="#topic" class="inline-flex items-center justify-center rounded-xl px-5 py-3 border border-white/40 bg-white/10 hover:bg-white/20">Tonight’s Topic</a>
-            </div>
-          </div>
-
-          <!-- Floating avatars (decorative) -->
-          <div class="pointer-events-none absolute right-2 md:right-10 bottom-6 flex gap-3 opacity-95">
-            <img loading="lazy" alt="" class="w-10 h-10 md:w-12 md:h-12 rounded-full ring-2 ring-white/70 animate-float" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop">
-            <img loading="lazy" alt="" class="w-10 h-10 md:w-12 md:h-12 rounded-full ring-2 ring-white/70 animate-float" style="animation-delay:.6s" src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=200&auto=format&fit=crop">
-            <img loading="lazy" alt="" class="w-10 h-10 md:w-12 md:h-12 rounded-full ring-2 ring-white/70 animate-float" style="animation-delay:1.2s" src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=200&auto=format&fit=crop">
-          </div>
-        </div>
-      </div>
+    <div class="absolute inset-0">
+      <video autoplay muted playsinline loop class="w-full h-full object-cover" poster="https://images.unsplash.com/photo-1525182008055-f88b95ff7980?q=80&w=1600&auto=format&fit=crop">
+        <source src="https://cdn.coverr.co/videos/coverr-video-call-people-chatting-6838/1080p.mp4" type="video/mp4">
+      </video>
+      <div class="absolute inset-0 bg-gradient-to-br from-berry/35 via-sky/35 to-accent/35"></div>
     </div>
-  </section>
-
-  <!-- Mission -->
-  <section id="mission" class="bg-white">
-    <div class="container mx-auto px-4 py-12 md:py-16">
-      <h2 class="text-2xl md:text-3xl font-bold">Our Mission & Philosophy</h2>
-      <p class="mt-3 md:mt-4 text-ink/80">
-        We’re here to make dating less casual and more meaningful. Apps feel noisy and transactional—too many
-        dishonest interactions. Our setting is comfortable, convenient, and respectful by design.
-      </p>
-      <div class="mt-6 md:mt-8 grid md:grid-cols-2 gap-6 md:gap-8">
-        <!-- Story card 1 -->
-        <div class="rounded-2xl p-5 md:p-6 bg-paper border border-ink/10">
-          <div class="flex items-center gap-3">
-            <svg viewBox="0 0 24 24" class="w-6 h-6 text-berry" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5C2 6 4 4 6.5 4C8.04 4 9.54 4.81 10.35 6.09C11.16 4.81 12.66 4 14.2 4C16.7 4 18.7 6 18.7 8.5c0 3.78-3.4 6.86-8.55 11.54Z"/></svg>
-            <h3 class="font-semibold text-lg">Stories over swipes</h3>
-          </div>
-          <p class="mt-3 text-ink/80">Share a fun fact, show a photo of your hobby, or tell a quick story. That’s how real connections start.</p>
+    <div class="relative container mx-auto px-4 py-16 md:py-24 text-white">
+      <div class="max-w-3xl drop-shadow-[0_1px_0_rgba(0,0,0,.25)]">
+        <p class="inline-flex items-center gap-2 text-[11px] md:text-xs uppercase tracking-widest bg-white/20 rounded-full px-3 py-1">
+          <span class="w-2 h-2 bg-berry rounded-full"></span> Verified students • 18–27 • Camera-on
+        </p>
+        <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mt-4">Share stories. Make real connections. Weekly city-based speed dating online.</h1>
+        <p class="mt-3 md:mt-4 text-base md:text-xl">Bring a photo of a hobby or a fun fact. If you both say “yes”, we intro you privately.</p>
+        <div class="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3">
+          <a id="meetupBtn" href="https://www.meetup.com/student-dating" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center rounded-xl px-5 py-3 bg-berry text-white shadow-soft">
+            Join on Meetup
+          </a>
+          <a href="#topic" class="inline-flex items-center justify-center rounded-xl px-5 py-3 border border-white/40 bg-white/10 hover:bg-white/20">Tonight’s Topic</a>
         </div>
-        <!-- Story card 2 -->
-        <div class="rounded-2xl p-5 md:p-6 bg-paper border border-ink/10">
-          <div class="flex items-center gap-3">
-            <svg viewBox="0 0 24 24" class="w-6 h-6 text-sky" fill="currentColor" aria-hidden="true"><path d="M12 3l7 4v10l-7 4l-7-4V7z"/></svg>
-            <h3 class="font-semibold text-lg">Host-guided & safe</h3>
-          </div>
-          <p class="mt-3 text-ink/80">Light prompts, respectful timing, camera-on, and verification to keep the vibe friendly.</p>
+        <div class="mt-6 flex flex-wrap items-center gap-3 text-sm">
+          <span class="px-3 py-1 rounded-full bg-white/20">Sydney Tue • Melbourne Wed</span>
+          <span id="countdown" class="px-3 py-1 rounded-full bg-white/20">Next event starts in …</span>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Why + How (unchanged core copy) -->
-  <section id="how" class="bg-gradient-to-br from-white via-paper to-white">
-    <div class="container mx-auto px-4 py-12 md:py-16 grid md:grid-cols-2 gap-8 md:gap-10">
-      <div>
-        <h2 class="text-2xl md:text-3xl font-semibold">How it works</h2>
-        <ol class="mt-4 space-y-3">
-          <li class="flex items-start gap-3"><span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-berry text-white text-xs font-bold">1</span> Pick your chapter and RSVP for the weekly online event.</li>
-          <li class="flex items-start gap-3"><span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-berry text-white text-xs font-bold">2</span> Join short, timed, one-on-one video chats with verified students.</li>
-          <li class="flex items-start gap-3"><span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-berry text-white text-xs font-bold">3</span> Share a funny story, interests, hobbies—be yourself.</li>
-          <li class="flex items-start gap-3"><span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-berry text-white text-xs font-bold">4</span> After the event, choose who you’d like to keep chatting with.</li>
-          <li class="flex items-start gap-3"><span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-berry text-white text-xs font-bold">5</span> Mutual “yes” only → we privately introduce your social handles.</li>
-        </ol>
-      </div>
-      <div>
-        <h2 class="text-2xl md:text-3xl font-semibold">Why it works</h2>
-        <ul class="mt-4 space-y-2 text-ink/80">
-          <li>Structured, low-pressure chats beat endless swipes.</li>
-          <li>City chapters make meeting up later simple.</li>
-          <li>Consent-first: no match, no info shared.</li>
-          <li>Privacy and safety are built-in from day one.</li>
-        </ul>
-      </div>
+      <div id="burst" class="pointer-events-none absolute inset-0"></div>
     </div>
   </section>
 
@@ -168,114 +94,135 @@
   <section id="topic" class="bg-white">
     <div class="container mx-auto px-4 py-12 md:py-16">
       <h2 class="text-2xl md:text-3xl font-semibold">Tonight’s Topic</h2>
-      <p class="mt-2 text-ink/80">Each event has a light theme to spark conversation. Bring a photo or two to screen-share if you like!</p>
-      <div class="mt-4 flex flex-wrap gap-2" id="topicChips" aria-live="polite">
-        <!-- chips inserted by JS -->
-      </div>
+      <p class="mt-2 text-ink/80">A light theme to spark stories. Bring a pic to screen-share!</p>
+      <div class="mt-4 flex flex-wrap gap-2" id="topicChips"></div>
       <div class="mt-6 rounded-2xl overflow-hidden shadow-soft border border-ink/10">
-        <img loading="lazy" alt="Students sharing hobbies online" class="w-full h-56 md:h-72 object-cover"
-             src="https://images.unsplash.com/photo-1600880292089-90e7e86ef2b6?q=80&w=1600&auto=format&fit=crop">
+        <img loading="lazy" alt="Students sharing hobbies online" class="w-full h-56 md:h-72 object-cover" src="https://images.unsplash.com/photo-1600880292089-90e7e86ef2b6?q=80&w=1600&auto=format&fit=crop">
       </div>
-      <div class="mt-4 text-sm text-ink/70">Examples: “Your happiest place”, “A hobby you love”, “Show & Tell: something you built”, “Most meaningful photo on your phone”.</div>
     </div>
   </section>
 
-  <!-- Meetup (kept; trimmed intro) -->
-  <section id="meetup" class="bg-white">
+  <!-- Meetup -->
+  <section id="meetup" class="bg-gradient-to-br from-white via-paper to-white">
+    <div class="container mx-auto px-4 py-12 md:py-16 grid md:grid-cols-2 gap-8 md:gap-10">
+      <div>
+        <h2 class="text-2xl md:text-3xl font-semibold">Join via Meetup</h2>
+        <p class="mt-3 text-ink/80">
+          <a href="https://studentspeeddating.online" class="underline hover:text-ink" target="_blank" rel="noreferrer">studentspeeddating.online</a><br>
+          Sydney every Tuesday night. Melbourne every Wednesday night. City-specific so meeting IRL later is easy.
+        </p>
+        <ol class="mt-4 space-y-2 text-ink/80">
+          <li>1) Tap “Join Group” on Meetup.</li>
+          <li>2) RSVP to your city’s weekly online event.</li>
+          <li>3) Quick student verification before your first event.</li>
+          <li>4) Join the call, share a fun story or a hobby pic.</li>
+          <li>5) Mutual “yes” → private intro with socials.</li>
+        </ol>
+        <div class="mt-6 flex flex-col sm:flex-row gap-3">
+          <a href="https://www.meetup.com/student-dating" class="inline-flex items-center justify-center rounded-xl px-5 py-3 bg-berry text-white hover:brightness-110 shadow-soft" target="_blank" rel="noreferrer">Open our Meetup</a>
+          <a href="#chapters" class="inline-flex items-center justify-center rounded-xl px-5 py-3 border border-ink/15 bg-white hover:bg-paper">See chapters</a>
+        </div>
+      </div>
+      <!-- Quick facts card -->
+      <div class="rounded-2xl border border-ink/10 bg-white shadow-soft p-6">
+        <h3 class="font-semibold text-lg">Why join</h3>
+        <ul class="mt-3 space-y-2 text-ink/80">
+          <li>• Meet students in your own city</li>
+          <li>• Real conversations, not endless swipes</li>
+          <li>• Details shared only on mutual “yes”</li>
+          <li>• Low-pressure, friendly and moderated</li>
+        </ul>
+        <h3 class="font-semibold text-lg mt-6">Eligibility & rules</h3>
+        <ul class="mt-3 space-y-2 text-ink/80">
+          <li>• 18–27, student or recent grad (verification required)</li>
+          <li>• Camera on for the whole event</li>
+          <li>• Respectful conduct; no screenshots/recordings</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Icebreaker generator -->
+  <section id="icebreakers" class="bg-white">
     <div class="container mx-auto px-4 py-12 md:py-16">
-      <div class="md:flex md:items-start md:justify-between md:gap-10">
-        <div class="max-w-2xl">
-          <h2 class="text-2xl md:text-3xl font-semibold">Join via Meetup</h2>
-          <p class="mt-3 text-ink/80">
-            <a href="https://studentspeeddating.online" class="underline hover:text-ink" target="_blank" rel="noreferrer">studentspeeddating.online</a><br>
-            Fun, safe, and relaxed weekly introductions for uni, college, and TAFE students (and recent grads) aged 18–27.
-          </p>
-          <ul class="mt-4 space-y-2 text-ink/80">
-            <li>• <span class="font-medium">Sydney</span> — every Tuesday night</li>
-            <li>• <span class="font-medium">Melbourne</span> — every Wednesday night</li>
-          </ul>
-          <div class="mt-6 flex flex-col sm:flex-row gap-3">
-            <a href="https://www.meetup.com/student-dating" class="inline-flex items-center justify-center rounded-xl px-5 py-3 bg-berry text-white hover:brightness-110 shadow-soft" target="_blank" rel="noreferrer">Open our Meetup</a>
-            <a href="#chapters" class="inline-flex items-center justify-center rounded-xl px-5 py-3 border border-ink/15 bg-white hover:bg-paper">See chapters</a>
-          </div>
-          <p class="mt-3 text-xs text-ink/60">Tip: Turn on Meetup notifications so you never miss this week’s session.</p>
-        </div>
-        <div class="mt-8 md:mt-0 shrink-0 w-full md:w-[420px]">
-          <div class="rounded-2xl border border-ink/10 bg-paper p-5 shadow-soft">
-            <h3 class="font-semibold">What’s on Meetup?</h3>
-            <ul class="mt-3 space-y-2 text-ink/80 text-sm">
-              <li>• Weekly event listings by city</li>
-              <li>• Host announcements & updates</li>
-              <li>• One-tap RSVP & reminders</li>
-              <li>• Post-event polls and feedback</li>
-            </ul>
-            <a href="https://www.meetup.com/student-dating" target="_blank" rel="noreferrer" class="mt-4 inline-flex w-full items-center justify-center rounded-xl px-4 py-2 bg-ink text-white hover:bg-ink/90">Go to Meetup ↗</a>
-          </div>
-        </div>
+      <h2 class="text-2xl md:text-3xl font-semibold">Need an icebreaker?</h2>
+      <p class="mt-2 text-ink/80">Click to get a prompt; one-tap to copy into chat.</p>
+      <div class="mt-4 flex flex-col sm:flex-row gap-3">
+        <button id="newIce" class="px-4 py-3 rounded-xl bg-ink text-white hover:bg-ink/90">New prompt</button>
+        <button id="copyIce" class="px-4 py-3 rounded-xl border border-ink/15 bg-white hover:bg-paper">Copy</button>
       </div>
+      <div id="iceText" class="mt-4 p-4 rounded-xl bg-paper border border-ink/10 text-ink/90">“Show & Tell: what’s a photo on your phone that makes you smile?”</div>
     </div>
   </section>
 
-  <!-- Show & Tell gallery -->
+  <!-- Show & Tell gallery (with upload preview only on client) -->
   <section id="gallery" class="bg-white">
     <div class="container mx-auto px-4 py-12 md:py-16">
       <h2 class="text-2xl md:text-3xl font-semibold">Show & Tell — Member Hobbies</h2>
-      <p class="mt-2 text-ink/80">A peek at the kind of things people love sharing during the event.</p>
-      <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-        <!-- Replace these with your own pics anytime -->
-        <button class="group relative rounded-xl overflow-hidden border border-ink/10" data-full="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop" aria-label="Hiking">
-          <img loading="lazy" alt="Hiking" class="w-full h-32 object-cover group-hover:scale-105 transition" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=400&auto=format&fit=crop">
-        </button>
-        <button class="group relative rounded-xl overflow-hidden border border-ink/10" data-full="https://images.unsplash.com/photo-1508057198894-247b23fe5ade?q=80&w=1600&auto=format&fit=crop" aria-label="Cooking">
-          <img loading="lazy" alt="Cooking" class="w-full h-32 object-cover group-hover:scale-105 transition" src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade?q=80&w=400&auto=format&fit=crop">
-        </button>
-        <button class="group relative rounded-xl overflow-hidden border border-ink/10" data-full="https://images.unsplash.com/photo-1448387473223-5c37445527e7?q=80&w=1600&auto=format&fit=crop" aria-label="Guitar">
-          <img loading="lazy" alt="Guitar" class="w-full h-32 object-cover group-hover:scale-105 transition" src="https://images.unsplash.com/photo-1448387473223-5c37445527e7?q=80&w=400&auto=format&fit=crop">
-        </button>
-        <button class="group relative rounded-xl overflow-hidden border border-ink/10" data-full="https://images.unsplash.com/photo-1509389928833-5caac6c8918a?q=80&w=1600&auto=format&fit=crop" aria-label="Art">
-          <img loading="lazy" alt="Art" class="w-full h-32 object-cover group-hover:scale-105 transition" src="https://images.unsplash.com/photo-1509389928833-5caac6c8918a?q=80&w=400&auto=format&fit=crop">
-        </button>
+      <p class="mt-2 text-ink/80">Add a photo you might share (local preview only).</p>
+      <div class="mt-4 flex items-center gap-3">
+        <input id="file" type="file" accept="image/*" class="text-sm">
+        <span class="text-xs text-ink/60">No upload — just a preview on your device.</span>
       </div>
-
-      <!-- Lightbox -->
-      <dialog id="lightbox" class="backdrop:bg-black/70 p-0 rounded-2xl overflow-hidden">
-        <img alt="" id="lightboxImg" class="max-h-[80vh] max-w-[90vw] object-contain">
-      </dialog>
+      <div id="galleryGrid" class="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <!-- starter cards -->
+        <img loading="lazy" alt="Hiking" class="w-full h-32 object-cover rounded-xl border border-ink/10" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=400&auto=format&fit=crop">
+        <img loading="lazy" alt="Cooking" class="w-full h-32 object-cover rounded-xl border border-ink/10" src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade?q=80&w=400&auto=format&fit=crop">
+        <img loading="lazy" alt="Guitar" class="w-full h-32 object-cover rounded-xl border border-ink/10" src="https://images.unsplash.com/photo-1448387473223-5c37445527e7?q=80&w=400&auto=format&fit=crop">
+        <img loading="lazy" alt="Art" class="w-full h-32 object-cover rounded-xl border border-ink/10" src="https://images.unsplash.com/photo-1509389928833-5caac6c8918a?q=80&w=400&auto=format&fit=crop">
+      </div>
     </div>
   </section>
 
-  <!-- Chapters (Sydney Tue / Melbourne Wed) -->
+  <!-- Testimonials / stories (scroll-snap) -->
+  <section id="testimonials" class="bg-white">
+    <div class="container mx-auto px-4 py-12 md:py-16">
+      <h2 class="text-2xl md:text-3xl font-semibold">What students say</h2>
+      <div class="mt-6 overflow-x-auto scrollsnap flex gap-4 pb-2">
+        <article class="snap min-w-[280px] max-w-sm rounded-2xl border border-ink/10 bg-paper p-5 shadow-soft">
+          <p class="text-ink/80">“Way more natural than apps. The prompts made it easy to start chatting.”</p>
+          <div class="mt-3 text-sm text-ink/60">— Priya, 21 (Melbourne)</div>
+        </article>
+        <article class="snap min-w-[280px] max-w-sm rounded-2xl border border-ink/10 bg-paper p-5 shadow-soft">
+          <p class="text-ink/80">“Loved the Show & Tell idea. I shared a guitar riff and got matched!”</p>
+          <div class="mt-3 text-sm text-ink/60">— Tom, 23 (Sydney)</div>
+        </article>
+        <article class="snap min-w-[280px] max-w-sm rounded-2xl border border-ink/10 bg-paper p-5 shadow-soft">
+          <p class="text-ink/80">“Felt safe and respectful. Camera-on with a friendly host = good vibe.”</p>
+          <div class="mt-3 text-sm text-ink/60">— Minh, 20 (Melbourne)</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapters -->
   <section id="chapters" class="bg-white">
     <div class="container mx-auto px-4 py-12 md:py-16">
       <div class="flex items-end justify-between gap-4">
         <div>
           <h2 class="text-2xl md:text-3xl font-semibold">Chapters</h2>
-          <p class="mt-2 text-ink/70">Weekly city events. More cities launching soon.</p>
+          <p class="mt-2 text-ink/70">Sydney (Tuesdays), Melbourne (Wednesdays). More cities soon.</p>
         </div>
-        <a href="https://www.linkedin.com/company/student-speed-dating-online" target="_blank" rel="noreferrer" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-ink/15 bg-white hover:bg-paper">
-          Become a host <span class="text-berry">→</span>
-        </a>
+        <a href="https://www.linkedin.com/company/student-speed-dating-online" target="_blank" rel="noreferrer" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-ink/15 bg-white hover:bg-paper">Become a host →</a>
       </div>
-
       <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <article class="rounded-2xl border border-ink/10 p-6 bg-white shadow-soft hover:-translate-y-0.5 hover:shadow-md transition">
+        <article class="rounded-2xl border border-ink/10 p-6 bg-white shadow-soft">
           <div class="flex items-center justify-between">
             <h3 class="text-lg font-semibold">Sydney, Australia</h3>
             <span class="text-xs px-2 py-1 rounded-full bg-sky/10 text-sky border border-sky/30">Tuesdays</span>
           </div>
-          <p class="mt-1 text-sm text-ink/70">Evening (local time)</p>
+          <p class="mt-1 text-sm text-ink/70">Evening (local)</p>
           <div class="mt-4 flex flex-wrap gap-2">
             <a href="https://www.meetup.com/student-dating" class="px-4 py-2 rounded-xl bg-berry text-white hover:brightness-110" target="_blank" rel="noreferrer">RSVP on Meetup</a>
             <a href="https://www.linkedin.com/company/student-speed-dating-online" class="px-4 py-2 rounded-xl border border-ink/15 hover:bg-paper" target="_blank" rel="noreferrer">Message host</a>
           </div>
         </article>
-
-        <article class="rounded-2xl border border-ink/10 p-6 bg-white shadow-soft hover:-translate-y-0.5 hover:shadow-md transition">
+        <article class="rounded-2xl border border-ink/10 p-6 bg-white shadow-soft">
           <div class="flex items-center justify-between">
             <h3 class="text-lg font-semibold">Melbourne, Australia</h3>
             <span class="text-xs px-2 py-1 rounded-full bg-berry/10 text-berry border border-berry/30">Wednesdays</span>
           </div>
-          <p class="mt-1 text-sm text-ink/70">Evening (local time)</p>
+          <p class="mt-1 text-sm text-ink/70">Evening (local)</p>
           <div class="mt-4 flex flex-wrap gap-2">
             <a href="https://www.meetup.com/student-dating" class="px-4 py-2 rounded-xl bg-berry text-white hover:brightness-110" target="_blank" rel="noreferrer">RSVP on Meetup</a>
             <a href="https://www.linkedin.com/company/student-speed-dating-online" class="px-4 py-2 rounded-xl border border-ink/15 hover:bg-paper" target="_blank" rel="noreferrer">Message host</a>
@@ -285,31 +232,7 @@
     </div>
   </section>
 
-  <!-- Become a Host + FAQ (unchanged) -->
-  <section id="host" class="bg-gradient-to-tr from-paper to-white">
-    <div class="container mx-auto px-4 py-12 md:py-16">
-      <div class="rounded-2xl p-6 md:p-8 border border-ink/10 bg-white shadow-soft">
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div>
-            <h2 class="text-2xl md:text-3xl font-semibold">Become a Host</h2>
-            <p class="mt-2 text-ink/80">
-              Launch a chapter in your city. We provide the run sheet, timing, and tools. You bring consistency and good vibes.
-            </p>
-            <ul class="mt-3 text-ink/80 space-y-1">
-              <li>• Current student or recent grad (18–27)</li>
-              <li>• Reliable internet, camera, and mic</li>
-              <li>• Comfortable facilitating intros and keeping time</li>
-            </ul>
-          </div>
-          <a href="https://www.linkedin.com/company/student-speed-dating-online" target="_blank" rel="noreferrer"
-             class="shrink-0 inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-ink text-white hover:bg-ink/90">
-            Apply via LinkedIn <span>→</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <!-- FAQ -->
   <section id="faq" class="bg-white">
     <div class="container mx-auto px-4 py-12 md:py-16">
       <h2 class="text-2xl md:text-3xl font-semibold">FAQ</h2>
@@ -324,11 +247,11 @@
         </div>
         <div class="rounded-xl p-5 bg-paper border border-ink/10">
           <h3 class="font-semibold">How do you verify students?</h3>
-          <p class="mt-1 text-ink/80">Before attending, provide either two active social accounts or a valid student card. We verify eligibility only and don’t share your info.</p>
+          <p class="mt-1 text-ink/80">Provide two active social accounts or a valid student card before attending.</p>
         </div>
         <div class="rounded-xl p-5 bg-paper border border-ink/10">
           <h3 class="font-semibold">Do I have to keep my camera on?</h3>
-          <p class="mt-1 text-ink/80">Yes. Camera is required for the entire event. No camera = no attendance.</p>
+          <p class="mt-1 text-ink/80">Yes. Camera is required for the entire event.</p>
         </div>
       </div>
     </div>
@@ -344,10 +267,9 @@
       <a class="underline hover:text-ink" href="https://www.linkedin.com/company/student-speed-dating-online" target="_blank" rel="noreferrer">LinkedIn</a>
     </div>
   </footer>
-
   <div class="fixed bottom-0 inset-x-0 md:hidden bg-white/95 backdrop-blur border-t border-ink/10 z-40">
     <div class="container mx-auto px-4 py-3 flex gap-3">
-      <a href="https://www.meetup.com/student-dating" target="_blank" rel="noreferrer" class="flex-1 inline-flex items-center justify-center rounded-xl px-4 py-3 bg-berry text-white shadow-soft">Join on Meetup</a>
+      <a id="meetupBtn2" href="https://www.meetup.com/student-dating" target="_blank" rel="noreferrer" class="flex-1 inline-flex items-center justify-center rounded-xl px-4 py-3 bg-berry text-white shadow-soft">Join on Meetup</a>
       <a href="#chapters" class="flex-1 inline-flex items-center justify-center rounded-xl px-4 py-3 border border-ink/15 bg-white">Chapters</a>
     </div>
   </div>
@@ -368,44 +290,118 @@
         : '<path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>';
     });
 
-    // Tonight's Topic rotator
+    // Countdown to next Tuesday (Sydney) or Wednesday (Melbourne) at 20:00 local
+    function nextWeekdayDate(targetDow, hour=20){
+      const now = new Date();
+      const d = new Date(now);
+      const currentDow = d.getDay(); // 0 Sun ... 6 Sat
+      let delta = targetDow - currentDow;
+      if (delta < 0 || (delta === 0 && d.getHours() >= hour)) delta += 7;
+      d.setDate(d.getDate() + delta);
+      d.setHours(hour,0,0,0);
+      return d;
+    }
+    // pick nearest upcoming between Tue and Wed:
+    function nextEventDate(){
+      const tue = nextWeekdayDate(2, 20);
+      const wed = nextWeekdayDate(3, 20);
+      return (tue < wed) ? {city:'Sydney', date:tue} : {city:'Melbourne', date:wed};
+    }
+    const cd = document.getElementById('countdown');
+    function tick(){
+      const {city, date} = nextEventDate();
+      const diff = date - new Date();
+      if (diff <= 0) { cd.textContent = 'Event starting now!'; return; }
+      const days = Math.floor(diff/86400000);
+      const hours = Math.floor((diff%86400000)/3600000);
+      const mins = Math.floor((diff%3600000)/60000);
+      cd.textContent = `Next up: ${city} in ${days}d ${hours}h ${mins}m`;
+    }
+    tick(); setInterval(tick, 30000);
+
+    // Topic chips
     const topics = [
-      'Show & Tell: a hobby pic',
+      'Show & Tell: hobby pic',
       'Fun fact about your hometown',
       'Your happiest place',
-      'A song that’s on repeat',
       'Something you built or wrote',
-      'A photo that makes you smile',
+      'Most meaningful photo on your phone',
+      'A song that’s on repeat',
       'Weekend rituals',
       'What you’re learning now'
     ];
-    const chipWrap = document.getElementById('topicChips');
-    function renderChips(activeIndex=0){
-      chipWrap.innerHTML = topics.map((t,i)=>
-        `<span class="px-3 py-1 rounded-full text-sm border ${(i===activeIndex)?'bg-berry text-white border-berry':'bg-white border-ink/10'}">${t}</span>`
-      ).join('');
-    }
-    let idx = Math.floor(Math.random()*topics.length);
-    renderChips(idx);
-    const intervalMs = 3000;
-    let rot;
-    const startRot = ()=> rot = setInterval(()=>{ idx=(idx+1)%topics.length; renderChips(idx); }, intervalMs);
-    const stopRot = ()=> clearInterval(rot);
-    startRot();
-    chipWrap.addEventListener('mouseenter', stopRot);
-    chipWrap.addEventListener('mouseleave', startRot);
-
-    // Simple lightbox for gallery
-    const dlg = document.getElementById('lightbox');
-    const img = document.getElementById('lightboxImg');
-    document.querySelectorAll('#gallery button[data-full]').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        img.src = btn.getAttribute('data-full');
-        dlg.showModal();
-      });
+    const chips = document.getElementById('topicChips');
+    topics.forEach((t,i)=>{
+      const span = document.createElement('span');
+      span.className = 'px-3 py-1 rounded-full text-sm border ' + (i===0?'bg-berry text-white border-berry':'bg-white border-ink/10');
+      span.textContent = t;
+      chips.appendChild(span);
     });
-    dlg?.addEventListener('click', (e)=>{ if(e.target === dlg) dlg.close(); });
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && dlg.open) dlg.close(); });
+
+    // Icebreakers
+    const iceList = [
+      'Show & Tell: a photo of something you love doing.',
+      'What’s a small habit that makes your day better?',
+      'What’s a song/album you’ve had on repeat?',
+      'What’s a weekend ritual you look forward to?',
+      'If we grabbed coffee, what would you order?',
+      'What’s a project you’re proud of (pic welcome)?',
+      'What’s a fun fact about your uni/TAFE?',
+      'What’s a place in your city you recommend?'
+    ];
+    const iceText = document.getElementById('iceText');
+    document.getElementById('newIce').addEventListener('click', ()=>{
+      const pick = iceList[Math.floor(Math.random()*iceList.length)];
+      iceText.textContent = pick;
+    });
+    document.getElementById('copyIce').addEventListener('click', async ()=>{
+      try{ await navigator.clipboard.writeText(iceText.textContent); toast('Copied ✓'); }catch(e){ toast('Copy failed'); }
+    });
+
+    // Gallery local preview
+    const grid = document.getElementById('galleryGrid');
+    document.getElementById('file').addEventListener('change', (e)=>{
+      const file = e.target.files?.[0]; if(!file) return;
+      const url = URL.createObjectURL(file);
+      const img = new Image();
+      img.onload = ()=> URL.revokeObjectURL(url);
+      img.src = url; img.alt='Your preview'; img.className='w-full h-32 object-cover rounded-xl border border-ink/10';
+      grid.prepend(img);
+      toast('Added preview (local only)');
+    });
+
+    // Tiny toast
+    function toast(msg){
+      const t = document.createElement('div');
+      t.textContent = msg;
+      t.className = 'fixed left-1/2 -translate-x-1/2 bottom-24 md:bottom-8 bg-ink text-white px-3 py-2 rounded-lg text-sm shadow-soft z-[60]';
+      document.body.appendChild(t);
+      setTimeout(()=>{ t.remove(); }, 1600);
+    }
+
+    // Emoji burst on Meetup click
+    function burstAt(btn){
+      const area = document.getElementById('burst');
+      for(let i=0;i<14;i++){
+        const span = document.createElement('span');
+        span.textContent = ['💬','🫶','🎉','📷','🎸','☕️'][Math.floor(Math.random()*6)];
+        span.className = 'absolute text-xl select-none';
+        const rect = btn.getBoundingClientRect();
+        const x = rect.left + rect.width/2 + (Math.random()*60-30);
+        const y = rect.top + (Math.random()*10);
+        span.style.left = x + 'px'; span.style.top = y + 'px';
+        span.style.opacity='1';
+        span.style.transition='transform 800ms ease, opacity 800ms ease';
+        requestAnimationFrame(()=>{
+          span.style.transform = `translate(${(Math.random()*140-70)}px, ${- (60+Math.random()*80)}px) rotate(${Math.random()*60-30}deg)`;
+          span.style.opacity='0';
+        });
+        setTimeout(()=>span.remove(), 820);
+        area.appendChild(span);
+      }
+    }
+    document.getElementById('meetupBtn').addEventListener('click', e=>{ burstAt(e.currentTarget); });
+    document.getElementById('meetupBtn2').addEventListener('click', e=>{ burstAt(e.currentTarget); });
   </script>
 </body>
 </html>
