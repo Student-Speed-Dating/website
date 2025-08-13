@@ -8,6 +8,7 @@
   <meta property="og:title" content="Student Speed Dating — Global Chapters" />
   <meta property="og:description" content="Join weekly, city-based virtual introductions. Mutual-consent matches only. Apply to host a chapter." />
   <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#ff6b6b">
   <link rel="icon" href="data:,">
   <!-- Tailwind CSS (CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -23,9 +24,7 @@
             berry: '#ff6b6b',
             sky: '#00b4d8'
           },
-          boxShadow: {
-            soft: '0 10px 30px rgba(0,0,0,.08)'
-          },
+          boxShadow: { soft: '0 10px 30px rgba(0,0,0,.08)' },
           animation: {
             float: 'float 6s ease-in-out infinite',
             pingSlow: 'ping 2.2s cubic-bezier(0,0,0.2,1) infinite',
@@ -47,6 +46,8 @@
       background-image: radial-gradient(rgba(0,0,0,.04) 1px, transparent 1px);
       background-size: 6px 6px;
     }
+    /* Improves iOS tap highlight */
+    a,button{ -webkit-tap-highlight-color: rgba(0,0,0,0.05); }
   </style>
 </head>
 <body class="bg-paper text-ink selection:bg-accent selection:text-ink">
@@ -56,44 +57,64 @@
       <a href="#top" class="font-extrabold tracking-tight text-lg md:text-xl hover:opacity-90 transition">
         Student <span class="text-berry">Speed</span> Dating
       </a>
-      <nav class="flex gap-4 text-sm">
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex gap-4 text-sm">
         <a href="#mission" class="hover:text-berry">Mission</a>
         <a href="#how" class="hover:text-berry">How it works</a>
+        <a href="#meetup" class="hover:text-berry">Meetup</a>
         <a href="#rules" class="hover:text-berry">Rules</a>
         <a href="#chapters" class="hover:text-berry">Chapters</a>
         <a href="#host" class="hover:text-berry">Become a Host</a>
         <a href="https://www.linkedin.com/company/student-speed-dating-online" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-ink text-white hover:bg-ink/90">
           <span>LinkedIn</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" class="opacity-80"><path fill="currentColor" d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4zM8 8h3.8v2.2h.05c.53-1 1.82-2.2 3.75-2.2C19.5 8 20 10.6 20 14.1V24h-4v-8.6c0-2-.03-4.6-2.8-4.6c-2.8 0-3.2 2.2-3.2 4.5V24H6V8z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" class="opacity-80" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4zM8 8h3.8v2.2h.05c.53-1 1.82-2.2 3.75-2.2C19.5 8 20 10.6 20 14.1V24h-4v-8.6c0-2-.03-4.6-2.8-4.6c-2.8 0-3.2 2.2-3.2 4.5V24H6V8z"/></svg>
         </a>
       </nav>
+
+      <!-- Mobile menu button -->
+      <button id="menuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-ink/15" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <svg id="menuIcon" class="w-5 h-5" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
     </div>
+    <!-- Mobile nav -->
+    <nav id="mobileNav" class="md:hidden hidden border-t border-ink/10">
+      <div class="container mx-auto px-4 py-3 grid gap-3 text-base">
+        <a class="py-2" href="#mission">Mission</a>
+        <a class="py-2" href="#how">How it works</a>
+        <a class="py-2" href="#meetup">Meetup</a>
+        <a class="py-2" href="#rules">Rules</a>
+        <a class="py-2" href="#chapters">Chapters</a>
+        <a class="py-2" href="#host">Become a Host</a>
+        <a class="py-2 inline-flex items-center gap-2" href="https://www.linkedin.com/company/student-speed-dating-online" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+      </div>
+    </nav>
   </header>
 
   <!-- Hero -->
   <section id="top" class="relative overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-br from-berry/10 via-sky/10 to-accent/10"></div>
-    <div class="container mx-auto px-4 py-16 md:py-20 relative">
+    <div class="container mx-auto px-4 py-14 md:py-20 relative">
       <div class="max-w-3xl">
-        <p class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-ink/70 bg-white/70 rounded-full px-3 py-1 shadow-soft">
+        <p class="inline-flex items-center gap-2 text-[11px] md:text-xs uppercase tracking-widest text-ink/70 bg-white/70 rounded-full px-3 py-1 shadow-soft">
           <span class="w-2 h-2 bg-berry rounded-full animate-pingSlow"></span> Verified students • Ages 18–27 • Camera-on
         </p>
-        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mt-4">
+        <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mt-4">
           Real conversations. Real consent. <span class="text-berry">Weekly</span> student speed dating by city.
         </h1>
-        <p class="mt-4 text-lg md:text-xl text-ink/80">
+        <p class="mt-3 md:mt-4 text-base md:text-xl text-ink/80">
           Short, hosted video chats. Mutual “yes” → private intro. No match, no details shared.
         </p>
-        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+        <div class="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3">
           <a href="#chapters" class="inline-flex items-center justify-center rounded-xl px-5 py-3 bg-berry text-white hover:brightness-110 shadow-soft">Find your city</a>
           <a href="#how" class="inline-flex items-center justify-center rounded-xl px-5 py-3 border border-ink/15 bg-white hover:bg-white/70">How it works</a>
         </div>
       </div>
 
       <!-- Fun visual -->
-      <div class="mt-10 grid md:grid-cols-[1fr,1fr] items-center gap-8">
+      <div class="mt-8 md:mt-10 grid md:grid-cols-[1fr,1fr] items-center gap-8">
         <div class="order-2 md:order-1">
-          <ul class="list-none space-y-3 text-ink/80">
+          <ul class="list-none space-y-3 text-ink/80 text-[15px] leading-relaxed">
             <li class="flex items-start gap-3"><span class="mt-1">💬</span> Hosted, timed 1:1 chats—no awkward silences.</li>
             <li class="flex items-start gap-3"><span class="mt-1">🫶</span> Consent-first matching. Mutual “yes” or nothing shared.</li>
             <li class="flex items-start gap-3"><span class="mt-1">🎯</span> City chapters so meeting IRL later is easy.</li>
@@ -101,19 +122,18 @@
           </ul>
         </div>
         <div class="order-1 md:order-2">
-          <div class="relative mx-auto max-w-md">
-            <div class="grain rounded-2xl bg-white border border-ink/10 p-6 shadow-soft">
-              <!-- Retro monitor with hearts -->
+          <div class="relative mx-auto max-w-sm md:max-w-md">
+            <div class="grain rounded-2xl bg-white border border-ink/10 p-5 md:p-6 shadow-soft">
               <div class="rounded-xl border-4 border-ink/80 p-4 bg-paper relative">
                 <div class="flex items-center justify-center gap-6 py-6">
-                  <div class="w-16 h-16 rounded-full bg-berry/10 border border-berry/30 flex items-center justify-center animate-float">
-                    <svg viewBox="0 0 24 24" class="w-8 h-8 text-berry" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5C2 6 4 4 6.5 4C8.04 4 9.54 4.81 10.35 6.09C11.16 4.81 12.66 4 14.2 4C16.7 4 18.7 6 18.7 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35Z"/></svg>
+                  <div class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-berry/10 border border-berry/30 flex items-center justify-center animate-float">
+                    <svg viewBox="0 0 24 24" class="w-7 h-7 md:w-8 md:h-8 text-berry" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5C2 6 4 4 6.5 4C8.04 4 9.54 4.81 10.35 6.09C11.16 4.81 12.66 4 14.2 4C16.7 4 18.7 6 18.7 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35Z"/></svg>
                   </div>
-                  <div class="w-16 h-16 rounded-full bg-sky/10 border border-sky/30 flex items-center justify-center animate-float" style="animation-delay:.7s">
-                    <svg viewBox="0 0 24 24" class="w-8 h-8 text-sky" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5C2 6 4 4 6.5 4C8.04 4 9.54 4.81 10.35 6.09C11.16 4.81 12.66 4 14.2 4C16.7 4 18.7 6 18.7 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35Z"/></svg>
+                  <div class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-sky/10 border border-sky/30 flex items-center justify-center animate-float" style="animation-delay:.7s">
+                    <svg viewBox="0 0 24 24" class="w-7 h-7 md:w-8 md:h-8 text-sky" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5C2 6 4 4 6.5 4C8.04 4 9.54 4.81 10.35 6.09C11.16 4.81 12.66 4 14.2 4C16.7 4 18.7 6 18.7 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35Z"/></svg>
                   </div>
                 </div>
-                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-ink/80 text-white text-xs px-3 py-1 rounded-full">Online Tonight</div>
+                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-ink/80 text-white text-[10px] md:text-xs px-3 py-1 rounded-full">Online Tonight</div>
               </div>
             </div>
           </div>
@@ -126,14 +146,14 @@
   <!-- Mission & Philosophy -->
   <section id="mission" class="bg-white">
     <div class="container mx-auto px-4 py-12 md:py-16">
-      <h2 class="text-3xl font-bold">Our Mission & Philosophy</h2>
-      <p class="mt-4 text-ink/80">
+      <h2 class="text-2xl md:text-3xl font-bold">Our Mission & Philosophy</h2>
+      <p class="mt-3 md:mt-4 text-ink/80">
         We’re here to make dating less casual and more meaningful. Apps feel noisy and transactional—too many
         dishonest interactions. Not everyone is comfortable in bars or loud venues. Our setting is comfortable,
         convenient, and respectful by design.
       </p>
-      <div class="mt-8 grid md:grid-cols-2 gap-8">
-        <div class="rounded-2xl p-6 bg-paper border border-ink/10">
+      <div class="mt-6 md:mt-8 grid md:grid-cols-2 gap-6 md:gap-8">
+        <div class="rounded-2xl p-5 md:p-6 bg-paper border border-ink/10">
           <h3 class="font-semibold text-lg">What we believe</h3>
           <ul class="mt-3 space-y-2 text-ink/80">
             <li>Genuine connection starts with real, face-to-face conversation—no endless swiping.</li>
@@ -142,7 +162,7 @@
             <li>Honesty shows up in how you speak, listen, and carry yourself—beyond words.</li>
           </ul>
         </div>
-        <div class="rounded-2xl p-6 bg-paper border border-ink/10">
+        <div class="rounded-2xl p-5 md:p-6 bg-paper border border-ink/10">
           <h3 class="font-semibold text-lg">Hosts as interviewers</h3>
           <p class="mt-3 text-ink/80">
             Our hosts guide light, non-personal prompts—like good interviewers. Think of a great interview:
@@ -156,7 +176,7 @@
 
   <!-- Why + How -->
   <section id="how" class="bg-gradient-to-br from-white via-paper to-white">
-    <div class="container mx-auto px-4 py-12 md:py-16 grid md:grid-cols-2 gap-10">
+    <div class="container mx-auto px-4 py-12 md:py-16 grid md:grid-cols-2 gap-8 md:gap-10">
       <div>
         <h2 class="text-2xl md:text-3xl font-semibold">How it works</h2>
         <ol class="mt-4 space-y-3">
@@ -175,6 +195,45 @@
           <li>Consent-first: no match, no info shared.</li>
           <li>Privacy and safety are built-in from day one.</li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW: Meetup section -->
+  <section id="meetup" class="bg-white">
+    <div class="container mx-auto px-4 py-12 md:py-16">
+      <div class="md:flex md:items-start md:justify-between md:gap-10">
+        <div class="max-w-2xl">
+          <h2 class="text-2xl md:text-3xl font-semibold">Join via Meetup</h2>
+          <p class="mt-3 text-ink/80">
+            We coordinate weekly events through our Meetup group so it’s easy to RSVP and get reminders.
+            Here’s what to expect:
+          </p>
+          <ol class="mt-4 space-y-3 text-ink/80">
+            <li><span class="font-medium">1)</span> Tap <em>“Join Group”</em> on our Meetup page.</li>
+            <li><span class="font-medium">2)</span> RSVP to your city’s weekly online event.</li>
+            <li><span class="font-medium">3)</span> Complete quick student verification before your first event.</li>
+            <li><span class="font-medium">4)</span> You’ll receive the event link and host run-through before start time.</li>
+            <li><span class="font-medium">5)</span> After the event, submit your “yes/no” privately; mutual “yes” = intro.</li>
+          </ol>
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <a href="MEETUP_URL" class="inline-flex items-center justify-center rounded-xl px-5 py-3 bg-berry text-white hover:brightness-110 shadow-soft" target="_blank" rel="noreferrer">Open our Meetup</a>
+            <a href="#chapters" class="inline-flex items-center justify-center rounded-xl px-5 py-3 border border-ink/15 bg-white hover:bg-paper">See chapters</a>
+          </div>
+          <p class="mt-3 text-xs text-ink/60">Tip: Turn on Meetup notifications so you never miss this week’s session.</p>
+        </div>
+        <div class="mt-8 md:mt-0 shrink-0 w-full md:w-[420px]">
+          <div class="rounded-2xl border border-ink/10 bg-paper p-5 shadow-soft">
+            <h3 class="font-semibold">What’s on Meetup?</h3>
+            <ul class="mt-3 space-y-2 text-ink/80 text-sm">
+              <li>• Weekly event listings by city</li>
+              <li>• Host announcements & updates</li>
+              <li>• One-tap RSVP & reminders</li>
+              <li>• Post-event polls and feedback</li>
+            </ul>
+            <a href="MEETUP_URL" target="_blank" rel="noreferrer" class="mt-4 inline-flex w-full items-center justify-center rounded-xl px-4 py-2 bg-ink text-white hover:bg-ink/90">Go to Meetup ↗</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -203,8 +262,7 @@
           <p class="mt-2 text-ink/70">Weekly city events. More cities launching soon.</p>
         </div>
         <a href="https://www.linkedin.com/company/student-speed-dating-online" target="_blank" rel="noreferrer" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-ink/15 bg-white hover:bg-paper">
-          Become a host
-          <span class="text-berry">→</span>
+          Become a host <span class="text-berry">→</span>
         </a>
       </div>
 
@@ -216,8 +274,8 @@
             <span class="text-xs px-2 py-1 rounded-full bg-sky/10 text-sky border border-sky/30">Tuesdays</span>
           </div>
           <p class="mt-1 text-sm text-ink/70">8:00 PM AEST</p>
-          <div class="mt-4 flex gap-2">
-            <a href="SYDNEY_RSVP_URL" class="px-4 py-2 rounded-xl bg-berry text-white hover:brightness-110">RSVP</a>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <a href="MEETUP_URL" class="px-4 py-2 rounded-xl bg-berry text-white hover:brightness-110">RSVP on Meetup</a>
             <a href="https://www.linkedin.com/company/student-speed-dating-online" class="px-4 py-2 rounded-xl border border-ink/15 hover:bg-paper" target="_blank" rel="noreferrer">Message host</a>
           </div>
           <div class="mt-4 text-sm text-ink/80">
@@ -233,8 +291,8 @@
             <span class="text-xs px-2 py-1 rounded-full bg-berry/10 text-berry border border-berry/30">Thursdays</span>
           </div>
           <p class="mt-1 text-sm text-ink/70">8:00 PM AEST</p>
-          <div class="mt-4 flex gap-2">
-            <a href="MELBOURNE_RSVP_URL" class="px-4 py-2 rounded-xl bg-berry text-white hover:brightness-110">RSVP</a>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <a href="MEETUP_URL" class="px-4 py-2 rounded-xl bg-berry text-white hover:brightness-110">RSVP on Meetup</a>
             <a href="https://www.linkedin.com/company/student-speed-dating-online" class="px-4 py-2 rounded-xl border border-ink/15 hover:bg-paper" target="_blank" rel="noreferrer">Message host</a>
           </div>
           <div class="mt-4 text-sm text-ink/80">
@@ -251,7 +309,7 @@
           </div>
           <p class="mt-1 text-sm text-ink/70">Time (local)</p>
           <div class="mt-4 flex gap-2">
-            <a href="RSVP_URL" class="px-4 py-2 rounded-xl bg-berry text-white">RSVP</a>
+            <a href="MEETUP_URL" class="px-4 py-2 rounded-xl bg-berry text-white">RSVP on Meetup</a>
             <a href="https://www.linkedin.com/company/student-speed-dating-online" class="px-4 py-2 rounded-xl border border-ink/15" target="_blank" rel="noreferrer">Message host</a>
           </div>
           <div class="mt-4 text-sm text-ink/80">
@@ -293,7 +351,7 @@
   <section id="faq" class="bg-white">
     <div class="container mx-auto px-4 py-12 md:py-16">
       <h2 class="text-2xl md:text-3xl font-semibold">FAQ</h2>
-      <div class="mt-6 grid md:grid-cols-2 gap-8">
+      <div class="mt-6 grid md:grid-cols-2 gap-6 md:gap-8">
         <div class="rounded-xl p-5 bg-paper border border-ink/10">
           <h3 class="font-semibold">Is this a dating app?</h3>
           <p class="mt-1 text-ink/80">No. It’s a weekly, host-facilitated virtual event with consent-first matching.</p>
@@ -315,14 +373,39 @@
   </section>
 
   <!-- Footer -->
-  <footer class="border-t border-ink/10 bg-white">
+  <footer class="border-t border-ink/10 bg-white pb-16 sm:pb-0">
     <div class="container mx-auto px-4 py-8 text-sm text-ink/70">
       © <span id="y"></span> Student Speed Dating — Consent-first, camera-on, verified students (18–27).
       <span class="mx-2">•</span>
       Contact: <a class="underline hover:text-ink" href="https://www.linkedin.com/company/student-speed-dating-online" target="_blank" rel="noreferrer">LinkedIn</a>
+      <span class="mx-2">•</span>
+      <a class="underline hover:text-ink" href="MEETUP_URL" target="_blank" rel="noreferrer">Meetup</a>
     </div>
   </footer>
 
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+  <!-- Mobile sticky CTA -->
+  <div class="fixed bottom-0 inset-x-0 md:hidden bg-white/95 backdrop-blur border-t border-ink/10 z-40">
+    <div class="container mx-auto px-4 py-3 flex gap-3">
+      <a href="MEETUP_URL" target="_blank" rel="noreferrer" class="flex-1 inline-flex items-center justify-center rounded-xl px-4 py-3 bg-berry text-white shadow-soft">Join on Meetup</a>
+      <a href="#chapters" class="flex-1 inline-flex items-center justify-center rounded-xl px-4 py-3 border border-ink/15 bg-white">Chapters</a>
+    </div>
+  </div>
+
+  <script>
+    // Year stamp
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const btn = document.getElementById('menuBtn');
+    const nav = document.getElementById('mobileNav');
+    const icon = document.getElementById('menuIcon');
+    btn?.addEventListener('click', () => {
+      const open = nav.classList.toggle('hidden') === false;
+      btn.setAttribute('aria-expanded', String(open));
+      icon.innerHTML = open
+        ? '<path d="M6 6l12 12M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'
+        : '<path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>';
+    });
+  </script>
 </body>
 </html>
